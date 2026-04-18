@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XTOOLS V4.0 EDITION</title>
+    <style>
+        :root {
+            --blue-v4: #00e5ff;
+            --dark-bg: #030303;
+            --glow: 0 0 15px rgba(0, 229, 255, 0.6);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Animasi Logo/Text Utama */
+        .header {
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--blue-v4);
+            text-align: center;
+            padding: 20px 0;
+            text-shadow: var(--glow);
+            letter-spacing: 3px;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { opacity: 0.7; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .page { display: none; width: 100%; max-width: 350px; }
+        .active { display: block; animation: slideIn 0.3s ease-out; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Style Input & Tombol */
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: var(--blue-v4); font-size: 14px; }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--blue-v4);
+            color: white;
+            border-radius: 8px;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-login { background: var(--blue-v4); color: black; box-shadow: var(--glow); }
+        .btn-key { background: transparent; border: 1px solid var(--blue-v4); color: var(--blue-v4); }
+
+        /* Style Menu ON/OFF */
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border-right: 3px solid var(--blue-v4);
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 45px;
+            height: 22px;
+        }
+
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #333;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .switch input:checked + .slider { background-color: var(--blue-v4); }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            height: 70px;
+            background: #080808;
+            border-top: 1px solid #222;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .nav-item {
+            font-size: 24px;
+            filter: grayscale(1);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .nav-item.active-nav { filter: grayscale(0); transform: scale(1.2); }
+
+        select {
+            background: #111;
+            color: var(--blue-v4);
+            border: 1px solid var(--blue-v4);
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">XTOOLS V4.0 EDITION</div>
+
+<div class="container">
+    <div id="p1" class="page active">
+        <div class="input-group">
+            <label>👤 USER=</label>
+            <input type="text" id="user" placeholder="Nama User">
+        </div>
+        <div class="input-group">
+            <label>🔐 KEY=</label>
+            <input type="password" id="key" placeholder="Password Key">
+        </div>
+        <button class="btn btn-login" onclick="checkLogin()">LOGIN</button>
+        <button class="btn btn-key" onclick="window.location.href='https://wa.me/6289510045457'">GET KEY</button>
+    </div>
+
+    <div id="p2" class="page">
+        <div style="color: var(--blue-v4); font-weight: bold; margin-bottom: 20px; text-align: center;">
+            XTOOLS MENU V4.0
+        </div>
+        <div class="menu-item">
+            <span>AIM HEAD V4.0</span>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+        </div>
+        <div class="menu-item">
+            <span>AIM NECK V4.0</span>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+        </div>
+        <div class="menu-item">
+            <span>HIT BOX V4.0</span>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+        </div>
+        <div class="menu-item">
+            <span>FPS LOCK</span>
+            <select>
+                <option>60 FPS</option>
+                <option>90 FPS</option>
+                <option>120 FPS</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="p3" class="page">
+        <div style="text-align: center;">
+            <p style="color: gray;">KONTAK DEVELOPER</p>
+            <button class="btn btn-login" style="background: #25D366; color: white;" onclick="window.location.href='https://wa.me/6289510045457'">
+                <span style="font-size: 1.2em;">💬</span> WhatsApp
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="bottom-nav">
+    <div id="n1" class="nav-item active-nav" onclick="changeTab(1)">🔑</div>
+    <div id="n2" class="nav-item" onclick="changeTab(2)">🛠️</div>
+    <div id="n3" class="nav-item" onclick="changeTab(3)">✉️</div>
+</div>
+
+<script>
+    let isLoggedIn = false;
+
+    function checkLogin() {
+        const u = document.getElementById('user').value;
+        const k = document.getElementById('key').value;
+
+        if (u === "Rapz" && k === "EDITION V4") {
+            isLoggedIn = true;
+            alert("LOGIN BERHASIL! Selamat Datang Rapz.");
+            changeTab(2);
+        } else {
+            alert("USER ATAU KEY SALAH!");
+        }
+    }
+
+    function changeTab(idx) {
+        // Proteksi Halaman 2: Harus Login Dulu
+        if (idx === 2 && !isLoggedIn) {
+            alert("SILAHKAN LOGIN TERLEBIH DAHULU!");
+            return;
+        }
+
+        // Reset Halaman
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active-nav'));
+
+        // Aktifkan Halaman & Nav
+        document.getElementById('p' + idx).classList.add('active');
+        document.getElementById('n' + idx).classList.add('active-nav');
+    }
+</script>
+
+</body>
+</html>
